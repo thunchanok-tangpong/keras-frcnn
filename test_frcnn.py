@@ -11,7 +11,9 @@ from keras import backend as K
 from keras.layers import Input
 from keras.models import Model
 from keras_frcnn import roi_helpers
+import pandas as pd
 
+test2= pd.DataFrame(columns=['Unnamed:0','filename','width','height','class','xmin','ymin','xmax','ymax'])
 sys.setrecursionlimit(40000)
 
 parser = OptionParser()
@@ -218,8 +220,9 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			probs[cls_name].append(np.max(P_cls[0, ii, :]))
 
 	all_dets = []
-
+	i=0
 	for key in bboxes:
+
 		bbox = np.array(bboxes[key])
 
 		new_boxes, new_probs = roi_helpers.non_max_suppression_fast(bbox, np.array(probs[key]), overlap_thresh=0.5)
@@ -231,6 +234,12 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			cv2.rectangle(img,(real_x1, real_y1), (real_x2, real_y2), (int(class_to_color[key][0]), int(class_to_color[key][1]), int(class_to_color[key][2])),2)
 
 			textLabel = '{}: {}'.format(key,int(100*new_probs[jk]))
+			xmin=real_x1
+			ymin=real_y1
+			xmax=real_x2
+			ymax=real_y2
+			cla=textLabel
+			test2.loc[i]=(i,img_name,640,480,cla,xmin,ymin,xmax,ymax)
 			all_dets.append((key,100*new_probs[jk]))
 
 			(retval,baseLine) = cv2.getTextSize(textLabel,cv2.FONT_HERSHEY_COMPLEX,1,1)
@@ -239,6 +248,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			cv2.rectangle(img, (textOrg[0] - 5, textOrg[1]+baseLine - 5), (textOrg[0]+retval[0] + 5, textOrg[1]-retval[1] - 5), (0, 0, 0), 2)
 			cv2.rectangle(img, (textOrg[0] - 5,textOrg[1]+baseLine - 5), (textOrg[0]+retval[0] + 5, textOrg[1]-retval[1] - 5), (255, 255, 255), -1)
 			cv2.putText(img, textLabel, textOrg, cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 0), 1)
+			i=i+1
 
 	print('Elapsed time = {}'.format(time.time() - st))
 	print(all_dets)
@@ -248,3 +258,4 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	#name=str(format(idx))+'.jpg'
 	
 	cv2.imwrite('/content/result_img/'+img_name,img)
+	export_csv = test2.to_csv (r'/content/test2.csv', index = None, header=True)
