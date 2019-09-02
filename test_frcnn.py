@@ -246,5 +246,5 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	#cv2.waitKey(0)
 	#cv2.imwrite('/content/{}.jpg'.format(idx),img)
 	#name=str(format(idx))+'.jpg'
-	name=img_path
+	name=img_path+'jpg'
 	cv2.imwrite('/content/result_img/'+name,img)
