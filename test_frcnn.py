@@ -148,7 +148,7 @@ classes = {}
 bbox_threshold = 0.8
 
 visualise = True
-
+i=0
 for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	if not img_name.lower().endswith(('.bmp', '.jpeg', '.jpg', '.png', '.tif', '.tiff')):
 		continue
@@ -220,7 +220,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			probs[cls_name].append(np.max(P_cls[0, ii, :]))
 
 	all_dets = []
-	i=0
+	
 	for key in bboxes:
 
 		bbox = np.array(bboxes[key])
