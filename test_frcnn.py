@@ -238,7 +238,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			ymin=real_y1
 			xmax=real_x2
 			ymax=real_y2
-			cla=textLabel.format(key)
+			cla=format(key)
 			test2.loc[i]=(i,img_name,640,480,cla,xmin,ymin,xmax,ymax)
 			all_dets.append((key,100*new_probs[jk]))
 
