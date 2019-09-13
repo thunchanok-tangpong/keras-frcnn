@@ -33,9 +33,11 @@ def get_data(input_path):
 			if filename not in all_imgs:
 				all_imgs[filename] = {}
 				
+				print(filename)
 				img = cv2.imread(filename,-1)
-				# print(filename)
 			
+
+				print(img.shape)
 				# _, th_image = cv2.threshold(img, 0, 1, cv2.THRESH_TOZERO)
 				# uint8_image = th_image * 255
 				# img=uint8_image
