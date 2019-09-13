@@ -37,7 +37,7 @@ def get_data(input_path):
 				img = cv2.imread(filename,-1)
 			
 
-				print(img.shape)
+				print(img)
 				# _, th_image = cv2.threshold(img, 0, 1, cv2.THRESH_TOZERO)
 				# uint8_image = th_image * 255
 				# img=uint8_image
