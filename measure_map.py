@@ -193,6 +193,7 @@ for idx, img_data in enumerate(test_imgs):
 	filepath = img_data['filepath']
 
 	img = cv2.imread(filepath, -1)
+	img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
 	X, fx, fy = format_img(img, C)
 

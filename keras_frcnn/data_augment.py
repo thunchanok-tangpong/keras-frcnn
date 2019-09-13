@@ -12,6 +12,7 @@ def augment(img_data, config, augment=True):
 	img_data_aug = copy.deepcopy(img_data)
 
 	img = cv2.imread(img_data_aug['filepath'], -1)
+	img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
 	if augment:
 		rows, cols = img.shape[:2]

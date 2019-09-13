@@ -34,6 +34,8 @@ def get_data(input_path):
 				all_imgs[filename] = {}
 				
 				img = cv2.imread(filename,-1)
+				img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
+
 			
 				(rows,cols) = img.shape[:2]
 				all_imgs[filename]['filepath'] = filename

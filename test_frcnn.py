@@ -157,6 +157,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	filepath = os.path.join(img_path,img_name)
 
 	img = cv2.imread(filepath, -1)
+	img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
 	X, ratio = format_img(img, C)
 
