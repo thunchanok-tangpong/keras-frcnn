@@ -279,7 +279,7 @@ for epoch_num in range(num_epochs):
 		except Exception as e:
 			print(e)
 			# print('Exception: {}'.format(e))
-			print sys.exc_value
+			print(sys.exc_value)
 			catchEverything()
 			continue
 
