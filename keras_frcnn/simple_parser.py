@@ -33,7 +33,7 @@ def get_data(input_path):
 			if filename not in all_imgs:
 				all_imgs[filename] = {}
 				
-				print(filename)
+				print('filepath : ', filename)
 				img = cv2.imread(filename,-1)
 			
 
