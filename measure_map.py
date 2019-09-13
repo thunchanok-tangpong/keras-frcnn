@@ -192,7 +192,7 @@ for idx, img_data in enumerate(test_imgs):
 	st = time.time()
 	filepath = img_data['filepath']
 
-	img = cv2.imread(filepath)
+	img = cv2.imread(filepath, -1)
 
 	X, fx, fy = format_img(img, C)
 

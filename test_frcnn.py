@@ -156,7 +156,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	st = time.time()
 	filepath = os.path.join(img_path,img_name)
 
-	img = cv2.imread(filepath)
+	img = cv2.imread(filepath, -1)
 
 	X, ratio = format_img(img, C)
 

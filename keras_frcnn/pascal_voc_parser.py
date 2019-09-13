@@ -89,7 +89,7 @@ def get_data(input_path):
 				all_imgs.append(annotation_data)
 
 				if visualise:
-					img = cv2.imread(annotation_data['filepath'])
+					img = cv2.imread(annotation_data['filepath'], -1)
 					for bbox in annotation_data['bboxes']:
 						cv2.rectangle(img, (bbox['x1'], bbox['y1']), (bbox[
 									  'x2'], bbox['y2']), (0, 0, 255))
