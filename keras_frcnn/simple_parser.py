@@ -34,9 +34,12 @@ def get_data(input_path):
 				all_imgs[filename] = {}
 				
 				img = cv2.imread(filename,-1)
-				print(filename)
-				# (rows,cols) = img.shape[:2]
-				(rows,cols) = (480,640)
+				# print(filename)
+				_, th_image = cv2.threshold(raw_image, 0, 1, cv2.THRESH_TOZERO)
+				uint8_image = th_image * 255
+				img=uint8_image
+				(rows,cols) = img.shape[:2]
+				# (rows,cols) = (480,640)
 				all_imgs[filename]['filepath'] = filename
 				all_imgs[filename]['width'] = cols
 				all_imgs[filename]['height'] = rows
