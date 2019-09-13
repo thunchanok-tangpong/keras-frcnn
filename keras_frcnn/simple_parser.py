@@ -34,6 +34,7 @@ def get_data(input_path):
 				all_imgs[filename] = {}
 				
 				img = cv2.imread(filename,-1)
+				print(filename)
 				(rows,cols) = img.shape[:2]
 				all_imgs[filename]['filepath'] = filename
 				all_imgs[filename]['width'] = cols
