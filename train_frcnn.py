@@ -16,6 +16,8 @@ from keras_frcnn import losses as losses
 import keras_frcnn.roi_helpers as roi_helpers
 from keras.utils import generic_utils
 
+import sys
+
 sys.setrecursionlimit(40000)
 
 parser = OptionParser()
@@ -169,7 +171,7 @@ for epoch_num in range(num_epochs):
 	print('Epoch {}/{}'.format(epoch_num + 1, num_epochs))
 
 	while True:
-		# try:
+		try:
 
 			if len(rpn_accuracy_rpn_monitor) == epoch_length and C.verbose:
 				mean_overlapping_bboxes = float(sum(rpn_accuracy_rpn_monitor))/len(rpn_accuracy_rpn_monitor)
@@ -274,9 +276,11 @@ for epoch_num in range(num_epochs):
 
 				break
 
-		# except Exception as e:
-		# 	print(e)
-		# 	# print('Exception: {}'.format(e))
-		# 	continue
+		except Exception as e:
+			print(e)
+			# print('Exception: {}'.format(e))
+			print sys.exc_value
+			catchEverything()
+			continue
 
 print('Training complete, exiting.')
