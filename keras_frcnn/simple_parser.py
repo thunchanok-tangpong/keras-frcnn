@@ -32,9 +32,15 @@ def get_data(input_path):
 
 			if filename not in all_imgs:
 				all_imgs[filename] = {}
-				
-				img = cv2.imread(filename,-1)
+				img = cv2.imread(img_data_aug['filepath'], -1)
+				_, img = cv2.threshold(img, 0, 1, cv2.THRESH_TOZERO)
+				img = img * 255
+				img=img.astype(np.uint8)
 				img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
+
+				
+				# img = cv2.imread(filename,-1)
+				# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
 			
 				(rows,cols) = img.shape[:2]
