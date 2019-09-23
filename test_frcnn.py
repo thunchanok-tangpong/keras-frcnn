@@ -156,8 +156,8 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	st = time.time()
 	filepath = os.path.join(img_path,img_name)
 
-	img = cv2.imread(filepath, -1)
-	_, img = cv2.threshold(img, 0, 1, cv2.THRESH_TOZERO)
+	img1 = cv2.imread(filepath, -1)
+	_, img = cv2.threshold(img1, 0, 1, cv2.THRESH_TOZERO)
 	img = img * 255
 	img=img.astype(np.uint8)
 	img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
@@ -264,5 +264,5 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	#cv2.imwrite('/content/{}.jpg'.format(idx),img)
 	#name=str(format(idx))+'.jpg'
 	
-	cv2.imwrite('/content/result_img/'+img_name,img)
+	cv2.imwrite('/content/result_img/'+img_name,img1)
 	export_csv = test2.to_csv (r'/content/test2.csv', index = None, header=True)
