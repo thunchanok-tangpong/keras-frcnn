@@ -13,7 +13,7 @@ from keras.models import Model
 from keras_frcnn import roi_helpers
 import pandas as pd
 
-test2= pd.DataFrame(columns=['Unnamed:0','filename','width','height','class','xmin','ymin','xmax','ymax'])
+test2= pd.DataFrame(columns=['Unnamed:0','filename','width','height','class','xmin','ymin','xmax','ymax','confidence'])
 sys.setrecursionlimit(40000)
 
 parser = OptionParser()
@@ -246,7 +246,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			xmax=real_x2
 			ymax=real_y2
 			cla=format(key)
-			test2.loc[i]=(i,img_name,640,480,cla,xmin,ymin,xmax,ymax)
+			test2.loc[i]=(i,img_name,640,480,cla,xmin,ymin,xmax,ymax,textLabel)
 			all_dets.append((key,100*new_probs[jk]))
 
 			(retval,baseLine) = cv2.getTextSize(textLabel,cv2.FONT_HERSHEY_COMPLEX,1,1)
