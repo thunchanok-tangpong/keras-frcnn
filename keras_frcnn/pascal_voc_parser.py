@@ -89,12 +89,14 @@ def get_data(input_path):
 				all_imgs.append(annotation_data)
 
 				if visualise:
-					img = cv2.imread(annotation_data['filepath'], -1)
-					_, img = cv2.threshold(img, 0, 1, cv2.THRESH_TOZERO)
-					img = img * 255
-					img=img.astype(np.uint8)
-					img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
+					# for 1 band img
 					# img = cv2.imread(annotation_data['filepath'], -1)
+					# _, img = cv2.threshold(img, 0, 1, cv2.THRESH_TOZERO)
+					# img = img * 255
+					# img=img.astype(np.uint8)
+					# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
+					# for RGB img
+					img = cv2.imread(annotation_data['filepath'])
 					# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
 					for bbox in annotation_data['bboxes']:
