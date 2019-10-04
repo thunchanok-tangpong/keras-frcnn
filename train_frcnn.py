@@ -38,6 +38,8 @@ parser.add_option("--input_weight_path", dest="input_weight_path", help="Input p
 
 (options, args) = parser.parse_args()
 
+test3= pd.DataFrame(columns=['epoch','Mean number of bounding boxes from RPN overlapping ground truth boxes','Classifier accuracy for bounding boxes from RPN','Loss RPN classifier','Loss RPN regression','Loss Detector classifier','Elapsed time'])
+sys.setrecursionlimit(40000) 
 if not options.train_path:   # if filename is not given
 	parser.error('Error: path to training data must be specified. Pass --path to command line')
 
@@ -261,6 +263,9 @@ for epoch_num in range(num_epochs):
 					print('Loss Detector classifier: {}'.format(loss_class_cls))
 					print('Loss Detector regression: {}'.format(loss_class_regr))
 					print('Elapsed time: {}'.format(time.time() - start_time))
+					
+					test3.loc[epoch_num]=(epoch_num + 1,mean_overlapping_bboxes,loss_rpn_cls,loss_rpn_regr,cla,loss_class_cls,loss_class_regr,time.time() - start_time)
+					export_csv = test3.to_csv (r'/content/test3.csv', index = None, header=True)
 
 				curr_loss = loss_rpn_cls + loss_rpn_regr + loss_class_cls + loss_class_regr
 				iter_num = 0
