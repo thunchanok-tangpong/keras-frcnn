@@ -54,6 +54,8 @@ else:
 # pass the settings from the command line, and persist them in the config object
 C = config.Config()
 
+print(C.model_path)
+
 C.use_horizontal_flips = bool(options.horizontal_flips)
 C.use_vertical_flips = bool(options.vertical_flips)
 C.rot_90 = bool(options.rot_90)
