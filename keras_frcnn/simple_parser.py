@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+from osgeo import gdal
 
 def get_data(input_path):
 	found_bg = False
@@ -42,11 +43,19 @@ def get_data(input_path):
 				# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
 				# for rgb img
-				img = cv2.imread(filename)
+				# img = cv2.imread(filename)
 				# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
+				# for 5 band img
+				inRas = gdal.Open(filename)
+				myarray = inRas.ReadAsArray()
+				myarray=myarray*255
+				myarray=myarray.astype(np.uint8)
+				img=myarray
+				# (num_bands, y_size, x_size)
 			
-				(rows,cols) = img.shape[:2]
+				# (rows,cols) = img.shape[:2]
+				(rows,cols) = img.shape[1:3]
 				all_imgs[filename]['filepath'] = filename
 				all_imgs[filename]['width'] = cols
 				all_imgs[filename]['height'] = rows
