@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import copy
-
+from osgeo import gdal
 
 def augment(img_data, config, augment=True):
 	assert 'filepath' in img_data
@@ -17,12 +17,18 @@ def augment(img_data, config, augment=True):
 	# img=img.astype(np.uint8)
 	# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
+	# for rgb
+	# img = cv2.imread(img_data_aug['filepath'])
 
-	img = cv2.imread(img_data_aug['filepath'])
-	# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
-
+	# for 5 band
+	inRas = gdal.Open(img_data_aug['filepath'])
+	myarray = inRas.ReadAsArray()
+	myarray=myarray*255
+	myarray=myarray.astype(np.uint8)
+	img=myarray
 	if augment:
-		rows, cols = img.shape[:2]
+		# rows, cols = img.shape[:2]
+		rows, cols = img.shape[1:3]
 
 		if config.use_horizontal_flips and np.random.randint(0, 2) == 0:
 			img = cv2.flip(img, 1)
@@ -76,6 +82,8 @@ def augment(img_data, config, augment=True):
 				elif angle == 0:
 					pass
 
-	img_data_aug['width'] = img.shape[1]
-	img_data_aug['height'] = img.shape[0]
+	# img_data_aug['width'] = img.shape[1]
+	# img_data_aug['height'] = img.shape[0]
+	img_data_aug['width'] = img.shape[2]
+	img_data_aug['height'] = img.shape[1]
 	return img_data_aug, img
