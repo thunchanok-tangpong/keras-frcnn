@@ -27,7 +27,7 @@ def augment(img_data, config, augment=True):
 	myarray1 = inRas1.ReadAsArray()
 	myarray1=myarray1*255
 	myarray1=myarray1.astype(np.uint8)
-	print(myarray1)
+	print(myarray1.shape)
 	img=myarray1
 	if augment:
 		# rows, cols = img.shape[:2]
