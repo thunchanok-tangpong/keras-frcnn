@@ -179,6 +179,7 @@ for epoch_num in range(num_epochs):
 
 	while True:
 		try:
+			
 
 			if len(rpn_accuracy_rpn_monitor) == epoch_length and C.verbose:
 				mean_overlapping_bboxes = float(sum(rpn_accuracy_rpn_monitor))/len(rpn_accuracy_rpn_monitor)
@@ -229,12 +230,15 @@ for epoch_num in range(num_epochs):
 				else:
 					selected_pos_samples = np.random.choice(pos_samples, C.num_rois//2, replace=False).tolist()
 				try:
+					print("selected_neg_samples try line 232")
 					selected_neg_samples = np.random.choice(neg_samples, C.num_rois - len(selected_pos_samples), replace=False).tolist()
 				except:
+					print("selected_neg_samples except line 232")
 					selected_neg_samples = np.random.choice(neg_samples, C.num_rois - len(selected_pos_samples), replace=True).tolist()
 
 				sel_samples = selected_pos_samples + selected_neg_samples
 			else:
+				print("else line     240")
 				# in the extreme case where num_rois = 1, we pick a random pos or neg sample
 				selected_pos_samples = pos_samples.tolist()
 				selected_neg_samples = neg_samples.tolist()
@@ -292,9 +296,9 @@ for epoch_num in range(num_epochs):
 					model_all.save_weights(C.model_path)
 
 				break
-			print("hey=================================================")
+			
 		except Exception as e:
-			# print("this is exception")
+			print("this is exception hey=============================")
 			print('Exception: {}'.format(e))
 			continue
 
