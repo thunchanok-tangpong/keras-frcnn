@@ -173,7 +173,7 @@ print('Starting training')
 vis = True
 
 for epoch_num in range(num_epochs):
-	print("new epoch=============================+++++++++++++++++++++++++++++++++++++++++++++++")
+	
 	progbar = generic_utils.Progbar(epoch_length)
 	print('Epoch {}/{}'.format(epoch_num + 1, num_epochs))
 
@@ -231,15 +231,15 @@ for epoch_num in range(num_epochs):
 				else:
 					selected_pos_samples = np.random.choice(pos_samples, C.num_rois//2, replace=False).tolist()
 				try:
-					print("selected_neg_samples try line 232")
+					# print("selected_neg_samples try line 232")
 					selected_neg_samples = np.random.choice(neg_samples, C.num_rois - len(selected_pos_samples), replace=False).tolist()
 				except:
-					print("selected_neg_samples except line 232")
+					# print("selected_neg_samples except line 232")
 					selected_neg_samples = np.random.choice(neg_samples, C.num_rois - len(selected_pos_samples), replace=True).tolist()
 
 				sel_samples = selected_pos_samples + selected_neg_samples
 			else:
-				print("else line     240")
+				# print("else line     240")
 				# in the extreme case where num_rois = 1, we pick a random pos or neg sample
 				selected_pos_samples = pos_samples.tolist()
 				selected_neg_samples = neg_samples.tolist()
@@ -299,7 +299,7 @@ for epoch_num in range(num_epochs):
 				break
 			
 		except Exception as e:
-			print("this is exception hey=============================")
+			# print("this is exception hey=============================")
 			print('Exception: {}'.format(e))
 			continue
 
