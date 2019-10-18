@@ -348,8 +348,8 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
 				# x_img[4, :, :] -= C.img_channel_mean[4]
 				x_img /= C.img_scaling_factor
 
-				# x_img = np.transpose(x_img, (2, 0, 1))
-				x_img = np.transpose(x_img, (4,0,1,2,3))
+				x_img = np.transpose(x_img, (2, 0, 1))
+				# x_img = np.transpose(x_img, (4,0,1,2,3))
 				x_img = np.expand_dims(x_img, axis=0)
 
 				y_rpn_regr[:, y_rpn_regr.shape[1]//2:, :, :] *= C.std_scaling
