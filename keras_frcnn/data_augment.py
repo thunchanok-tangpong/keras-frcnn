@@ -27,11 +27,12 @@ def augment(img_data, config, augment=True):
 	myarray1 = inRas1.ReadAsArray()
 	myarray1=myarray1*255
 	myarray1=myarray1.astype(np.uint8)
+	img =np.transpose(myarray1, (1, 2, 0))
 	
-	img=myarray1
+	
 	if augment:
 		# rows, cols = img.shape[:2]
-		rows, cols = img.shape[1:3]
+		rows, cols = img.shape[:2]
 
 		if config.use_horizontal_flips and np.random.randint(0, 2) == 0:
 			img = cv2.flip(img, 1)
@@ -87,7 +88,7 @@ def augment(img_data, config, augment=True):
 
 	# img_data_aug['width'] = img.shape[1]
 	# img_data_aug['height'] = img.shape[0]
-	img_data_aug['width'] = img.shape[2]
-	img_data_aug['height'] = img.shape[1]
+	img_data_aug['width'] = img.shape[1]
+	img_data_aug['height'] = img.shape[0]
 	# print(myarray1.shape)
 	return img_data_aug, img

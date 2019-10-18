@@ -298,8 +298,8 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
 					img_data_aug, x_img = data_augment.augment(img_data, C, augment=False)
 
 				(width, height) = (img_data_aug['width'], img_data_aug['height'])
-				# (rows, cols, _) = x_img.shape
-				( _,rows, cols) = x_img.shape
+				(rows, cols, _) = x_img.shape
+				# ( _,rows, cols) = x_img.shape
 
 				assert cols == width
 				assert rows == height
@@ -311,20 +311,21 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
 				
 
 				# resize the image so that smalles side is length = 600px
-				# x_img = cv2.resize(x_img, (resized_width, resized_height), interpolation=cv2.INTER_CUBIC)
+				x_img = cv2.resize(x_img, (resized_width, resized_height), interpolation=cv2.INTER_CUBIC)
 
-				img_stack_sm = np.zeros((5,resized_width,resized_height))
+				# img_stack_sm = np.zeros((5,resized_width,resized_height))
 
-				for x in range(5):
-  					my=x_img[x,:,:]
-  					x_img = cv2.resize(my, (resized_height,resized_width), interpolation=cv2.INTER_CUBIC)
-  					img_stack_sm[x, :, :] = x_img
+				# for x in range(5):
+  				# 	my=x_img[x,:,:]
+  				# 	x_img = cv2.resize(my, (resized_height,resized_width), interpolation=cv2.INTER_CUBIC)
+  				# 	img_stack_sm[x, :, :] = x_img
 
-				x_img=img_stack_sm
+				# x_img=img_stack_sm
 
 				try:
 					y_rpn_cls, y_rpn_regr = calc_rpn(C, img_data_aug, width, height, resized_width, resized_height, img_length_calc_function)
 				except:
+					print(Exception)
 					continue
 
 				# Zero-center by mean pixel, and preprocess image
@@ -335,11 +336,16 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
 				# x_img[:, :, 0] -= C.img_channel_mean[0]
 				# x_img[:, :, 1] -= C.img_channel_mean[1]
 				# x_img[:, :, 2] -= C.img_channel_mean[2]
-				x_img[0, :, :] -= C.img_channel_mean[0]
-				x_img[1, :, :] -= C.img_channel_mean[1]
-				x_img[2, :, :] -= C.img_channel_mean[2]
-				x_img[3, :, :] -= C.img_channel_mean[3]
-				x_img[4, :, :] -= C.img_channel_mean[4]
+				x_img[:, :, 0] -= C.img_channel_mean[0]
+				x_img[:, :, 1] -= C.img_channel_mean[1]
+				x_img[:, :, 2] -= C.img_channel_mean[2]
+				x_img[:, :, 3] -= C.img_channel_mean[1]
+				x_img[:, :, 4] -= C.img_channel_mean[2]
+				# x_img[0, :, :] -= C.img_channel_mean[0]
+				# x_img[1, :, :] -= C.img_channel_mean[1]
+				# x_img[2, :, :] -= C.img_channel_mean[2]
+				# x_img[3, :, :] -= C.img_channel_mean[3]
+				# x_img[4, :, :] -= C.img_channel_mean[4]
 				x_img /= C.img_scaling_factor
 
 				# x_img = np.transpose(x_img, (2, 0, 1))

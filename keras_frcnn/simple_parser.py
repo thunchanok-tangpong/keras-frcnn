@@ -51,11 +51,11 @@ def get_data(input_path):
 				myarray = inRas.ReadAsArray()
 				myarray=myarray*255
 				myarray=myarray.astype(np.uint8)
-				img=myarray
+				img=np.transpose(myarray, (1, 2, 0))
 				# (num_bands, y_size, x_size)
 			
 				# (rows,cols) = img.shape[:2]
-				(rows,cols) = img.shape[1:3]
+				(rows,cols) = img.shape[:2]
 				all_imgs[filename]['filepath'] = filename
 				all_imgs[filename]['width'] = cols
 				all_imgs[filename]['height'] = rows
