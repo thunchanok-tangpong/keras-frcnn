@@ -208,7 +208,7 @@ for epoch_num in range(num_epochs):
 
 			neg_samples = np.where(Y1[0, :, -1] == 1)
 			pos_samples = np.where(Y1[0, :, -1] == 0)
-			print("line after pos sample")
+			
 
 			if len(neg_samples) > 0:
 				neg_samples = neg_samples[0]
@@ -292,6 +292,7 @@ for epoch_num in range(num_epochs):
 				break
 
 		except Exception as e:
+			print("this is exception")
 			print('Exception: {}'.format(e))
 			continue
 
