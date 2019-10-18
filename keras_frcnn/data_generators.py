@@ -308,14 +308,16 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
 				(resized_width, resized_height) = get_new_img_size(width, height, C.im_size)
 				print(resized_width)
 				print(resized_height)
+				print(x_img.shape)
 
 				# resize the image so that smalles side is length = 600px
 				# x_img = cv2.resize(x_img, (resized_width, resized_height), interpolation=cv2.INTER_CUBIC)
+				img_stack_sm = np.zeros((5, resized_width, resized_height))
 				for idx in range(5):
     				img = x_img[idx, :, :]
     				img_sm = cv2.resize(img, (resized_width, resized_height), interpolation=cv2.INTER_CUBIC)
-    				x_img_r[idx, :, :] = img_sm
-				x_img=x_img_r
+    				img_stack_sm[idx, :, :] = img_sm
+				x_img=img_stack_sm
 				print(x_img)
 
 				try:
