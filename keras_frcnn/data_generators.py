@@ -316,7 +316,7 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
 				img_stack_sm = np.zeros((5,resized_width,resized_height))
 
 				for x in range(5):
-  					my=myarray[x,:,:]
+  					my=x_img[x,:,:]
   					x_img = cv2.resize(my, (resized_height,resized_width), interpolation=cv2.INTER_CUBIC)
   					img_stack_sm[x, :, :] = x_img
 
