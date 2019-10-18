@@ -258,6 +258,7 @@ for epoch_num in range(num_epochs):
 			iter_num += 1
 			
 			if iter_num == epoch_length:
+				print("iter_num == epoch_length")
 				loss_rpn_cls = np.mean(losses[:, 0])
 				loss_rpn_regr = np.mean(losses[:, 1])
 				loss_class_cls = np.mean(losses[:, 2])
@@ -292,7 +293,7 @@ for epoch_num in range(num_epochs):
 				break
 
 		except Exception as e:
-			print("this is exception")
+			# print("this is exception")
 			print('Exception: {}'.format(e))
 			continue
 
