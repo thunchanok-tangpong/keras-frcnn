@@ -121,7 +121,7 @@ if K.image_dim_ordering() == 'th':
 	print("th")
 else:
 	# input_shape_img = (None, None, 3)
-	input_shape_img = (5,None, None)
+	input_shape_img = (None, None, 5)
 	print("not th")
 
 img_input = Input(shape=input_shape_img)
