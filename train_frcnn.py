@@ -113,12 +113,15 @@ print('Num val samples {}'.format(len(val_imgs)))
 
 
 data_gen_train = data_generators.get_anchor_gt(train_imgs, classes_count, C, nn.get_img_output_length, K.image_dim_ordering(), mode='train')
+print("after data_gen_train line ")
 data_gen_val = data_generators.get_anchor_gt(val_imgs, classes_count, C, nn.get_img_output_length,K.image_dim_ordering(), mode='val')
 
 if K.image_dim_ordering() == 'th':
 	input_shape_img = (3, None, None)
+	print("th")
 else:
 	input_shape_img = (None, None, 3)
+	print("not th")
 
 img_input = Input(shape=input_shape_img)
 roi_input = Input(shape=(None, 4))
@@ -184,6 +187,7 @@ for epoch_num in range(num_epochs):
 					print('RPN is not producing bounding boxes that overlap the ground truth boxes. Check RPN settings or keep training.')
 
 			X, Y, img_data = next(data_gen_train)
+			print("after line 186")
 
 			loss_rpn = model_rpn.train_on_batch(X, Y)
 
