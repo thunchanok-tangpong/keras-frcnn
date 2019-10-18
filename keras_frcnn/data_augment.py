@@ -22,9 +22,10 @@ def augment(img_data, config, augment=True):
 
 	# for 5 band
 	
-	print(img_data_aug['filepath'])
+	# print(img_data_aug['filepath'])
 	inRas1 = gdal.Open(img_data_aug['filepath'])
 	myarray1 = inRas1.ReadAsArray()
+	print(myarray1)
 	myarray1=myarray1*255
 	myarray1=myarray1.astype(np.uint8)
 	img=myarray1
