@@ -199,6 +199,7 @@ for epoch_num in range(num_epochs):
 			X2, Y1, Y2, IouS = roi_helpers.calc_iou(R, img_data, C, class_mapping)
 
 			if X2 is None:
+				print("X2 is None")
 				rpn_accuracy_rpn_monitor.append(0)
 				rpn_accuracy_for_epoch.append(0)
 				continue
@@ -289,6 +290,6 @@ for epoch_num in range(num_epochs):
 
 		except Exception as e:
 			print('Exception: {}'.format(e))
-			# continue
+			continue
 
 print('Training complete, exiting.')
