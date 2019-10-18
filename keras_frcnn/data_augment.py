@@ -21,11 +21,12 @@ def augment(img_data, config, augment=True):
 	# img = cv2.imread(img_data_aug['filepath'])
 
 	# for 5 band
-	inRas = gdal.Open(img_data_aug['filepath'])
-	myarray = inRas.ReadAsArray()
-	myarray=myarray*255
-	myarray=myarray.astype(np.uint8)
-	img=myarray
+	print(img_data_aug['filepath'])
+	inRas1 = gdal.Open(img_data_aug['filepath'])
+	myarray1 = inRas1.ReadAsArray()
+	myarray1=myarray1*255
+	myarray1=myarray1.astype(np.uint8)
+	img=myarray1
 	if augment:
 		# rows, cols = img.shape[:2]
 		rows, cols = img.shape[1:3]
