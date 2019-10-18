@@ -173,11 +173,12 @@ print('Starting training')
 vis = True
 
 for epoch_num in range(num_epochs):
-
+	print("new epoch")
 	progbar = generic_utils.Progbar(epoch_length)
 	print('Epoch {}/{}'.format(epoch_num + 1, num_epochs))
 
 	while True:
+
 		try:
 			
 
@@ -260,7 +261,7 @@ for epoch_num in range(num_epochs):
 									  ('detector_cls', losses[iter_num, 2]), ('detector_regr', losses[iter_num, 3])])
 
 			iter_num += 1
-			print(iter_num)
+			# print(iter_num)
 			
 			if iter_num == epoch_length:
 				print("iter_num == epoch_length")
