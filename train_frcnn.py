@@ -292,7 +292,7 @@ for epoch_num in range(num_epochs):
 					model_all.save_weights(C.model_path)
 
 				break
-
+			print("hey=================================================")
 		except Exception as e:
 			# print("this is exception")
 			print('Exception: {}'.format(e))
