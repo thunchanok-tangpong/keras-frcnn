@@ -197,7 +197,7 @@ for epoch_num in range(num_epochs):
 			R = roi_helpers.rpn_to_roi(P_rpn[0], P_rpn[1], C, K.image_dim_ordering(), use_regr=True, overlap_thresh=0.7, max_boxes=300)
 			# note: calc_iou converts from (x1,y1,x2,y2) to (x,y,w,h) format
 			X2, Y1, Y2, IouS = roi_helpers.calc_iou(R, img_data, C, class_mapping)
-			print("X2",X2)
+			# print("X2",X2)
 
 			if X2 is None:
 				print("X2 is None")
@@ -208,6 +208,7 @@ for epoch_num in range(num_epochs):
 
 			neg_samples = np.where(Y1[0, :, -1] == 1)
 			pos_samples = np.where(Y1[0, :, -1] == 0)
+			print("line after pos sample")
 
 			if len(neg_samples) > 0:
 				neg_samples = neg_samples[0]
