@@ -276,8 +276,9 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
 	# all_img_data = sorted(all_img_data)
 
 	sample_selector = SampleSelector(class_count)
-
+	n=0
 	while True:
+		n=n+1
 		if mode == 'train':
 			np.random.shuffle(all_img_data)
 
@@ -291,6 +292,7 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
 
 				if mode == 'train':
 					img_data_aug, x_img = data_augment.augment(img_data, C, augment=True)
+					print(n)
 				else:
 					img_data_aug, x_img = data_augment.augment(img_data, C, augment=False)
 
