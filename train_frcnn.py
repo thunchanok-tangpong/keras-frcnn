@@ -188,7 +188,7 @@ for epoch_num in range(num_epochs):
 					print('RPN is not producing bounding boxes that overlap the ground truth boxes. Check RPN settings or keep training.')
 
 			X, Y, img_data = next(data_gen_train)
-			print("after line 186")
+			# print("after line 190")
 
 			loss_rpn = model_rpn.train_on_batch(X, Y)
 
@@ -289,6 +289,6 @@ for epoch_num in range(num_epochs):
 
 		except Exception as e:
 			print('Exception: {}'.format(e))
-			continue
+			# continue
 
 print('Training complete, exiting.')
