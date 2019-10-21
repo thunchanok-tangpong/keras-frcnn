@@ -13,6 +13,7 @@ from keras.models import Model
 from keras_frcnn import roi_helpers
 import pandas as pd
 from osgeo import gdal
+import matplotlib.pyplot as plt
 
 test2= pd.DataFrame(columns=['Unnamed:0','filename','width','height','class','xmin','ymin','xmax','ymax','confidence'])
 sys.setrecursionlimit(40000)
@@ -283,7 +284,8 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	#cv2.waitKey(0)
 	#cv2.imwrite('/content/{}.jpg'.format(idx),img)
 	#name=str(format(idx))+'.jpg'
-	
+	plt.imshow(img)
+	plt.savefig('/content/result_img/'+img_name)
 	# cv2.imwrite('/content/result_img/'+img_name,img1)
-	cv2.imwrite('/content/result_img/'+img_name,img)
+	# cv2.imwrite('/content/result_img/'+img_name,img)
 	export_csv = test2.to_csv (r'/content/test2.csv', index = None, header=True)
