@@ -184,7 +184,9 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 
 	# get the feature maps and output from the RPN
 	[Y1, Y2, F] = model_rpn.predict(X)
-	
+	print(Y1.shape)
+	print(Y2.shape)
+	print(F.shape)
 
 	R = roi_helpers.rpn_to_roi(Y1, Y2, C, K.image_dim_ordering(), overlap_thresh=0.7)
 
