@@ -167,11 +167,11 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
 	# for rgb img
-	img = cv2.imread(filepath)
+	# img = cv2.imread(filepath)
 	# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
 	# for 5 band
-	inRas2 = gdal.Open(img_data_aug['filepath'])
+	inRas2 = gdal.Open(filepath)
 	myarray2 = inRas2.ReadAsArray()
 	myarray2=myarray2*255
 	myarray2=myarray2.astype(np.uint8)
