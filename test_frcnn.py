@@ -254,7 +254,8 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			(real_x1, real_y1, real_x2, real_y2) = get_real_coordinates(ratio, x1, y1, x2, y2)
 			
 			
-			img=img[:,:,(1)]
+			# img=img[:,:,(1)]
+			img=img[:,:,(0,1,2)]
 			img = img.astype(np.uint8).copy()
 
 			# cv2.rectangle(img1,(real_x1, real_y1), (real_x2, real_y2), (int(class_to_color[key][0]), int(class_to_color[key][1]), int(class_to_color[key][2])),2)
@@ -268,7 +269,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			ymax=real_y2
 			cla=format(key)
 			test2.loc[i]=(i,img_name,640,480,cla,xmin,ymin,xmax,ymax,textLabel)
-			all_dets.append((key,100*new_probs[jk]))
+			all_dets.append((kesy,100*new_probs[jk]))
 
 			(retval,baseLine) = cv2.getTextSize(textLabel,cv2.FONT_HERSHEY_COMPLEX,1,1)
 			textOrg = (real_x1, real_y1-0)
