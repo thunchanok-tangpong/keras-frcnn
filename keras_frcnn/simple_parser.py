@@ -34,15 +34,15 @@ def get_data(input_path):
 				all_imgs[filename] = {}
 
 				# for 1 band img
-				# img = cv2.
-				# (filename,-1)
-				# _, img = cv2.threshold(img, 0, 1, cv2.THRESH_TOZERO)
-				# img = img * 255
-				# img=img.astype(np.uint8)
-				# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
+				img = cv2.
+				(filename,-1)
+				_, img = cv2.threshold(img, 0, 1, cv2.THRESH_TOZERO)
+				img = img * 255
+				img=img.astype(np.uint8)
+				img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
 				# for rgb img
-				img = cv2.imread(filename)
+				# img = cv2.imread(filename)
 				# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
 			

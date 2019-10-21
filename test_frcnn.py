@@ -157,14 +157,14 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	filepath = os.path.join(img_path,img_name)
 
 	# for 1 band img
-	# img1 = cv2.imread(filepath, -1)
-	# _, img = cv2.threshold(img1, 0, 1, cv2.THRESH_TOZERO)
-	# img = img * 255
-	# img=img.astype(np.uint8)
-	# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
+	img1 = cv2.imread(filepath, -1)
+	_, img = cv2.threshold(img1, 0, 1, cv2.THRESH_TOZERO)
+	img = img * 255
+	img=img.astype(np.uint8)
+	img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
 	# for rgb img
-	img = cv2.imread(filepath)
+	# img = cv2.imread(filepath)
 	# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
 	X, ratio = format_img(img, C)
