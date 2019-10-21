@@ -254,7 +254,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 
 			(real_x1, real_y1, real_x2, real_y2) = get_real_coordinates(ratio, x1, y1, x2, y2)
 			
-			img=img[:,:,(2,3,4)]
+			img=img[:,:,(0,1,2)]
 			img = img.astype(np.uint8).copy()
 
 			# cv2.rectangle(img1,(real_x1, real_y1), (real_x2, real_y2), (int(class_to_color[key][0]), int(class_to_color[key][1]), int(class_to_color[key][2])),2)
@@ -284,8 +284,8 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	#cv2.waitKey(0)
 	#cv2.imwrite('/content/{}.jpg'.format(idx),img)
 	#name=str(format(idx))+'.jpg'
-	plt.imshow(img)
-	plt.savefig('/content/result_img/'+img_name+'.png')
+	# plt.imshow(img)
+	# plt.savefig('/content/result_img/'+img_name)
 	# cv2.imwrite('/content/result_img/'+img_name,img1)
-	# cv2.imwrite('/content/result_img/'+img_name,img)
+	cv2.imwrite('/content/result_img/'+img_name,img)
 	export_csv = test2.to_csv (r'/content/test2.csv', index = None, header=True)
