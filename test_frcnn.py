@@ -68,11 +68,14 @@ def format_img_size(img, C):
 
 def format_img_channels(img, C):
 	""" formats the image channels based on config """
-	img = img[:, :, (2, 1, 0)]
+	# img = img[:, :, (2, 1, 0)]
+	
 	img = img.astype(np.float32)
 	img[:, :, 0] -= C.img_channel_mean[0]
 	img[:, :, 1] -= C.img_channel_mean[1]
 	img[:, :, 2] -= C.img_channel_mean[2]
+	img[:, :, 3] -= C.img_channel_mean[3]
+	img[:, :, 4] -= C.img_channel_mean[4]
 	img /= C.img_scaling_factor
 	img = np.transpose(img, (2, 0, 1))
 	img = np.expand_dims(img, axis=0)
@@ -178,10 +181,10 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	img =np.transpose(myarray2, (1, 2, 0))
 
 	X, ratio = format_img(img, C)
-
+	print(X.shape)
 	if K.image_dim_ordering() == 'tf':
 		X = np.transpose(X, (0, 2, 3, 1))
-	print(X.shape)
+	
 	# get the feature maps and output from the RPN
 	[Y1, Y2, F] = model_rpn.predict(X)
 	
