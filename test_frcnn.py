@@ -12,6 +12,7 @@ from keras.layers import Input
 from keras.models import Model
 from keras_frcnn import roi_helpers
 import pandas as pd
+from osgeo import gdal
 
 test2= pd.DataFrame(columns=['Unnamed:0','filename','width','height','class','xmin','ymin','xmax','ymax','confidence'])
 sys.setrecursionlimit(40000)
@@ -109,10 +110,12 @@ elif C.network == 'vgg':
 	num_features = 512
 
 if K.image_dim_ordering() == 'th':
-	input_shape_img = (3, None, None)
+	# input_shape_img = (3, None, None)
+	input_shape_img = (5, None, None)
 	input_shape_features = (num_features, None, None)
 else:
-	input_shape_img = (None, None, 3)
+	# input_shape_img = (None, None, 3)
+	input_shape_img = (None, None, 5)
 	input_shape_features = (None, None, num_features)
 
 
@@ -166,6 +169,13 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	# for rgb img
 	img = cv2.imread(filepath)
 	# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
+
+	# for 5 band
+	inRas2 = gdal.Open(img_data_aug['filepath'])
+	myarray2 = inRas2.ReadAsArray()
+	myarray2=myarray2*255
+	myarray2=myarray2.astype(np.uint8)
+	img =np.transpose(myarray2, (1, 2, 0))
 
 	X, ratio = format_img(img, C)
 
