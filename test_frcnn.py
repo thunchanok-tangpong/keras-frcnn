@@ -262,7 +262,8 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 
 			cv2.rectangle(img2,(real_x1, real_y1), (real_x2, real_y2), (int(class_to_color[key][0]), int(class_to_color[key][1]), int(class_to_color[key][2])),2)
 			
-			textLabel = '{}: {}'.format(key,int(100*new_probs[jk]))
+			# textLabel = '{}: {}'.format(key,int(100*new_probs[jk]))
+			textLabel = '{}: {}'.format(i,int(100*new_probs[jk]))
 			xmin=real_x1
 			ymin=real_y1
 			xmax=real_x2
