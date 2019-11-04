@@ -341,6 +341,7 @@ def get_anchor_gt(all_img_data, class_count, C, img_length_calc_function, backen
 				x_img[:, :, 2] -= C.img_channel_mean[2]
 				x_img[:, :, 3] -= C.img_channel_mean[3]
 				x_img[:, :, 4] -= C.img_channel_mean[4]
+				x_img[:, :, 5] -= C.img_channel_mean[5]
 				# x_img[0, :, :] -= C.img_channel_mean[0]
 				# x_img[1, :, :] -= C.img_channel_mean[1]
 				# x_img[2, :, :] -= C.img_channel_mean[2]

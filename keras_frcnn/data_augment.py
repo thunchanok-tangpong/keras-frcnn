@@ -20,9 +20,7 @@ def augment(img_data, config, augment=True):
 	# for rgb
 	# img = cv2.imread(img_data_aug['filepath'])
 
-	# for 5 band
-	
-	# print(img_data_aug['filepath'])
+	# for 5 band and 6 band
 	inRas1 = gdal.Open(img_data_aug['filepath'])
 	myarray1 = inRas1.ReadAsArray()
 	myarray1=myarray1*255

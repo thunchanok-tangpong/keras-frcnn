@@ -47,13 +47,20 @@ def get_data(input_path):
 				# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
 				# for 5 band img
+				# inRas = gdal.Open(filename)
+				# myarray = inRas.ReadAsArray()
+				# myarray=myarray*255
+				# myarray=myarray.astype(np.uint8)
+				# img=np.transpose(myarray, (1, 2, 0))
+				# (num_bands, y_size, x_size)
+
+				# for 6 band img
+				# for 5 band img
 				inRas = gdal.Open(filename)
 				myarray = inRas.ReadAsArray()
 				myarray=myarray*255
 				myarray=myarray.astype(np.uint8)
 				img=np.transpose(myarray, (1, 2, 0))
-				# (num_bands, y_size, x_size)
-			
 				# (rows,cols) = img.shape[:2]
 				(rows,cols) = img.shape[:2]
 				all_imgs[filename]['filepath'] = filename
