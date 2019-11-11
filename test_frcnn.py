@@ -182,8 +182,8 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	myarray2=myarray2.astype(np.uint8)
 	img =np.transpose(myarray2, (1, 2, 0))
 	img1=img*5
-	img1=img1[:,:,(0,1,2)]
-	img1 = img1.astype(np.uint8).copy()
+	# img1=img1[:,:,(0,1,2)]
+	# img1 = img1.astype(np.uint8).copy()
 
 	X, ratio = format_img(img, C)
 	# print(X.shape)
