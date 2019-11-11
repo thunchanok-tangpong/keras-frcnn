@@ -181,7 +181,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	myarray2=myarray2*255
 	myarray2=myarray2.astype(np.uint8)
 	img =np.transpose(myarray2, (1, 2, 0))
-	img1=img*5
+	img2=img*5
 	# img1=img1[:,:,(0,1,2)]
 	# img1 = img1.astype(np.uint8).copy()
 
@@ -247,9 +247,8 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			probs[cls_name].append(np.max(P_cls[0, ii, :]))
 
 	all_dets = []
-	# img2=img2[:,:,(0,1,2)]
-	# img2=img2*5
-	# img2 = img2.astype(np.uint8).copy()
+	img2=img2[:,:,(0,1,2)]
+	img2 = img2.astype(np.uint8).copy()
 	for key in bboxes:
 
 		bbox = np.array(bboxes[key])
@@ -262,9 +261,9 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			
 			
 
-			cv2.rectangle(img1,(real_x1, real_y1), (real_x2, real_y2), (int(class_to_color[key][0]), int(class_to_color[key][1]), int(class_to_color[key][2])),2)
+			# cv2.rectangle(img1,(real_x1, real_y1), (real_x2, real_y2), (int(class_to_color[key][0]), int(class_to_color[key][1]), int(class_to_color[key][2])),2)
 
-			# cv2.rectangle(img2,(real_x1, real_y1), (real_x2, real_y2), (int(class_to_color[key][0]), int(class_to_color[key][1]), int(class_to_color[key][2])),2)
+			cv2.rectangle(img2,(real_x1, real_y1), (real_x2, real_y2), (int(class_to_color[key][0]), int(class_to_color[key][1]), int(class_to_color[key][2])),2)
 			
 			textLabel = '{}: {}'.format(key,int(100*new_probs[jk]))
 			# textLabel = '{}: {}'.format(i,int(100*new_probs[jk]))
@@ -279,9 +278,9 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			(retval,baseLine) = cv2.getTextSize(textLabel,cv2.FONT_HERSHEY_COMPLEX,1,1)
 			textOrg = (real_x1, real_y1-0)
 
-			cv2.rectangle(img1, (textOrg[0] - 5, textOrg[1]+baseLine - 5), (textOrg[0]+retval[0] + 5, textOrg[1]-retval[1] - 5), (0, 0, 0), 2)
-			cv2.rectangle(img1, (textOrg[0] - 5,textOrg[1]+baseLine - 5), (textOrg[0]+retval[0] + 5, textOrg[1]-retval[1] - 5), (255, 255, 255), -1)
-			cv2.putText(img1, textLabel, textOrg, cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 0), 1)
+			cv2.rectangle(img2, (textOrg[0] - 5, textOrg[1]+baseLine - 5), (textOrg[0]+retval[0] + 5, textOrg[1]-retval[1] - 5), (0, 0, 0), 2)
+			cv2.rectangle(img2, (textOrg[0] - 5,textOrg[1]+baseLine - 5), (textOrg[0]+retval[0] + 5, textOrg[1]-retval[1] - 5), (255, 255, 255), -1)
+			cv2.putText(img2, textLabel, textOrg, cv2.FONT_HERSHEY_DUPLEX, 1, (0, 0, 0), 1)
 			i=i+1
 
 	print('Elapsed time = {}'.format(time.time() - st))
@@ -292,6 +291,6 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	#name=str(format(idx))+'.jpg'
 	# plt.imshow(img)
 	# plt.savefig('/content/result_img/'+img_name)
-	cv2.imwrite('/content/result_img/'+img_name,img1)
-	# cv2.imwrite('/content/result_img/'+img_name,img2)
+	# cv2.imwrite('/content/result_img/'+img_name,img1)
+	cv2.imwrite('/content/result_img/'+img_name,img2)
 	export_csv = test2.to_csv (r'/content/test2.csv', index = None, header=True)
