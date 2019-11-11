@@ -77,6 +77,7 @@ def format_img_channels(img, C):
 	img[:, :, 2] -= C.img_channel_mean[2]
 	img[:, :, 3] -= C.img_channel_mean[3]
 	img[:, :, 4] -= C.img_channel_mean[4]
+	img[:, :, 5] -= C.img_channel_mean[5]
 	img /= C.img_scaling_factor
 	img = np.transpose(img, (2, 0, 1))
 	img = np.expand_dims(img, axis=0)
@@ -114,12 +115,12 @@ elif C.network == 'vgg':
 	num_features = 512
 
 if K.image_dim_ordering() == 'th':
-	# input_shape_img = (3, None, None)
-	input_shape_img = (5, None, None)
+	input_shape_img = (3, None, None)
+	# input_shape_img = (6, None, None)
 	input_shape_features = (num_features, None, None)
 else:
-	# input_shape_img = (None, None, 3)
-	input_shape_img = (None, None, 5)
+	input_shape_img = (None, None, 3)
+	# input_shape_img = (None, None, 6)
 	input_shape_features = (None, None, num_features)
 
 
@@ -174,7 +175,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	# img = cv2.imread(filepath)
 	# img = cv2.cvtColor(img,cv2.COLOR_GRAY2RGB)
 
-	# for 5 band
+	# for 5 band and 6 band
 	inRas2 = gdal.Open(filepath)
 	myarray2 = inRas2.ReadAsArray()
 	myarray2=myarray2*255
@@ -244,7 +245,8 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			probs[cls_name].append(np.max(P_cls[0, ii, :]))
 
 	all_dets = []
-	img2=img2[:,:,(2,3,4)]
+	img2=img2[:,:,(0,1,2)]
+	img2=img2*5
 	img2 = img2.astype(np.uint8).copy()
 	for key in bboxes:
 
@@ -262,8 +264,8 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 
 			cv2.rectangle(img2,(real_x1, real_y1), (real_x2, real_y2), (int(class_to_color[key][0]), int(class_to_color[key][1]), int(class_to_color[key][2])),2)
 			
-			# textLabel = '{}: {}'.format(key,int(100*new_probs[jk]))
-			textLabel = '{}: {}'.format(i,int(100*new_probs[jk]))
+			textLabel = '{}: {}'.format(key,int(100*new_probs[jk]))
+			# textLabel = '{}: {}'.format(i,int(100*new_probs[jk]))
 			xmin=real_x1
 			ymin=real_y1
 			xmax=real_x2
