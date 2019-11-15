@@ -180,7 +180,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 	myarray2=myarray2*255
 	myarray2=myarray2.astype(np.uint8)
 	img =np.transpose(myarray2, (1, 2, 0))
-	img2=img
+	img2=img*5
 
 	X, ratio = format_img(img, C)
 	# print(X.shape)
@@ -244,7 +244,7 @@ for idx, img_name in enumerate(sorted(os.listdir(img_path))):
 			probs[cls_name].append(np.max(P_cls[0, ii, :]))
 
 	all_dets = []
-	img2=img2[:,:,(2,3,4)]
+	img2=img2[:,:,(2,1,0)]
 	img2 = img2.astype(np.uint8).copy()
 	for key in bboxes:
 
