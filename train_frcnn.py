@@ -203,7 +203,7 @@ for epoch_num in range(num_epochs):
 			# print("X2",X2)
 
 			if X2 is None:
-				print("X2 is None")
+				# print("X2 is None")
 				rpn_accuracy_rpn_monitor.append(0)
 				rpn_accuracy_for_epoch.append(0)
 				continue
